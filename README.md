@@ -1,68 +1,26 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 회원가입 벨리데이션
 
-## Available Scripts
+### 요구사항
 
-In the project directory, you can run:
+1. 중복체크를 반드시 해야 가입완료처리가 된다.
+중복체크시 아이디(test, admin, userid) 값은 기존에
+있는 유저아이디라서 사용할 수 없다고 안내메세지띄움
 
-### `yarn start`
+2. 아이디는 10자리 이상 영문+숫자+특수문자가 결합된
+상태여야 가입될 수 있다.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. 비밀번호는 12자리 이상 영문+숫자+특수문자2개이상
+이 결합된 상태여야 하고 비밀번호와 비밀번호 확인이 
+일치 되어야 가입될 수 있다.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+4. 생년은 1910~2019년까지 생성한다.
 
-### `yarn test`
+5. 월을 선택시 해당 월에 맞는 일자까지만 일 셀렉트
+박스에 노출된다. ex : 4월 선택시 30일까지. 5월선택시
+31일까지. 단, 2월은 윤년을 고려하여 28일 또는 29일로
+나타나게 한다.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. 취미는 하나이상 선택되어야 한다.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+7. 자기소개는 최소 20자 이상 입력해야 하고 입력될 때마다
+하단의 0/300 숫자가 변해야 한다.
