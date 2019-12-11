@@ -26,8 +26,8 @@ class Introduce extends Component {
     return (
       <li>
         <label htmlFor="">자기소개</label>
-        <textarea cols="30" rows="10" name="introduce" onChange={this.handleChange}>
-        {this.state.introduce}
+        <textarea cols="30" rows="10" name="introduce" onChange={this.handleChange}
+        value={this.state.introduce}>
         </textarea>
         <p className="tar"><span>{this.state.introLength}</span>/300</p>
       </li>

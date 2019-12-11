@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Id from './component/Id';
-import Year from './component/Year';
-import Date from './component/Date';
 import Pw from './component/Pw';
 import Introduce from './component/Introduce';
 import Hobby from './component/Hobby';
 import Gender from './component/ Gender';
-// import Id from './component/Id';
+import Date from './component/Date';
 
 class App extends Component {
   isValidAll = true;
@@ -30,7 +28,7 @@ class App extends Component {
   }
   // 자식 컴포넌트로부터 받은 값 setState
   handleReciveData = (data) => {
-    console.log(data);
+    // console.log(data);
     this.setState({ [data.name]: data.value })
   }
 
@@ -74,40 +72,33 @@ class App extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-          <ul>
-              <Id onReciveData = {this.handleReciveData} onValidate = {this.checkResultValid} vaild = {this.isValidAll} />
-              <Pw onReciveData = {this.handleReciveData} keyName="pw" />
-              <Pw onReciveData = {this.handleReciveData} keyName="pwChk" />
-              {/* <PwChk onReciveData = {this.handleReciveData} /> */}
-              {/* <li><label htmlFor="">성별</label><input type="radio" name="gender" onChange={this.handleChange} value="man"/>남 <input type="radio" name="gender" onChange={this.handleChange} value="여"/>여</li> */}
-              <Gender onReciveData = {this.handleReciveData} />
-              <li>
-                <Date />
-                <Year />
-                <select name="">
-                  <option value="">1</option>
-                </select>
-                일
-              </li>
-              {/* <li>
-                <label htmlFor="">취미</label>
-                <input type="checkbox" name="" onChange={this.handleChecked} value="연애"/> 연애
-                <input type="checkbox" name="" onChange={this.handleChecked} value="게임"/> 게임
-                <input type="checkbox" name="" onChange={this.handleChecked} value="영화보기"/> 영화보기
-              </li> */}
-              <Hobby onReciveData = {this.handleReciveData}/>
-              {/* <li>
-                <label htmlFor="">자기소개</label>
-                <textarea cols="30" rows="10" name="introduce" onChange={this.handleChange}></textarea>
-                <p className="tar"><span>{this.state.introLength}</span>/300</p>
-              </li> */}
-              <Introduce onReciveData = {this.handleReciveData}/>
-              <li>
-                <button>취소</button>
-                <button type="submit">가입완료</button>
-              </li>
-          </ul>
-          {JSON.stringify(this.state)}
+        <ul>
+          <Id onReciveData = {this.handleReciveData} onValidate = {this.checkResultValid} vaild = {this.isValidAll} />
+          <Pw onReciveData = {this.handleReciveData} keyName="pw" />
+          <Pw onReciveData = {this.handleReciveData} keyName="pwChk" />
+          {/* <PwChk onReciveData = {this.handleReciveData} /> */}
+          {/* <li><label htmlFor="">성별</label><input type="radio" name="gender" onChange={this.handleChange} value="man"/>남 <input type="radio" name="gender" onChange={this.handleChange} value="여"/>여</li> */}
+          <Gender onReciveData = {this.handleReciveData} />
+          <Date />
+          {/* <li>
+            <label htmlFor="">취미</label>
+            <input type="checkbox" name="" onChange={this.handleChecked} value="연애"/> 연애
+            <input type="checkbox" name="" onChange={this.handleChecked} value="게임"/> 게임
+            <input type="checkbox" name="" onChange={this.handleChecked} value="영화보기"/> 영화보기
+          </li> */}
+          <Hobby onReciveData = {this.handleReciveData}/>
+          {/* <li>
+            <label htmlFor="">자기소개</label>
+            <textarea cols="30" rows="10" name="introduce" onChange={this.handleChange}></textarea>
+            <p className="tar"><span>{this.state.introLength}</span>/300</p>
+          </li> */}
+          <Introduce onReciveData = {this.handleReciveData}/>
+          <li>
+            <button>취소</button>
+            <button type="submit">가입완료</button>
+          </li>
+        </ul>
+        {JSON.stringify(this.state)}
       </form>
     );
   }
