@@ -34,7 +34,7 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state)
+    console.log(this.state)
     if(!this.state.chkId) {
       alert("아이디 중복체크를 클릭 해주세요");
       return;
@@ -48,6 +48,11 @@ class App extends Component {
     // 비밀번호와 비밀번호 확인이 일치
     if(this.state.pw !== this.state.pwChk) {
       alert("비밀번호와 비밀번호 확인이 일치하지 않음")
+      return;
+    }
+    // 생년월일 입력확인
+    if(this.state.birthD === "") {
+      alert("생년월일 선택해주세요.");
       return;
     }
     // 취미는 하나이상 선택되어야 한다.
@@ -76,22 +81,9 @@ class App extends Component {
           <Id onReciveData = {this.handleReciveData} onValidate = {this.checkResultValid} vaild = {this.isValidAll} />
           <Pw onReciveData = {this.handleReciveData} keyName="pw" />
           <Pw onReciveData = {this.handleReciveData} keyName="pwChk" />
-          {/* <PwChk onReciveData = {this.handleReciveData} /> */}
-          {/* <li><label htmlFor="">성별</label><input type="radio" name="gender" onChange={this.handleChange} value="man"/>남 <input type="radio" name="gender" onChange={this.handleChange} value="여"/>여</li> */}
           <Gender onReciveData = {this.handleReciveData} />
-          <Date />
-          {/* <li>
-            <label htmlFor="">취미</label>
-            <input type="checkbox" name="" onChange={this.handleChecked} value="연애"/> 연애
-            <input type="checkbox" name="" onChange={this.handleChecked} value="게임"/> 게임
-            <input type="checkbox" name="" onChange={this.handleChecked} value="영화보기"/> 영화보기
-          </li> */}
+          <Date onReciveData = {this.handleReciveData} />
           <Hobby onReciveData = {this.handleReciveData}/>
-          {/* <li>
-            <label htmlFor="">자기소개</label>
-            <textarea cols="30" rows="10" name="introduce" onChange={this.handleChange}></textarea>
-            <p className="tar"><span>{this.state.introLength}</span>/300</p>
-          </li> */}
           <Introduce onReciveData = {this.handleReciveData}/>
           <li>
             <button>취소</button>

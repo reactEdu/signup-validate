@@ -30,8 +30,6 @@ class Date extends Component {
           isLeap: data.isLeap,
           birthY: data.value,
         }; 
-      }, () => {
-        console.log("callback", this.state);
       });
       // console.log("outer", this.state);
     } else if(data.name ===  "birthM") {
@@ -43,13 +41,33 @@ class Date extends Component {
       this.setState({
         birthM: data.value,
       });
-    } else  if(data.name ===  "birthD"){
+    } else if(data.name ===  "birthD"){
       if(this.state.birthM === "") {
         alert("월을 선택해주세요.")
         return;
       }
-    }
 
+      this.setState((prevState) => {
+        return {
+          birthD: data.value,
+        }; 
+      }, () => {
+        console.log("callback", this.state);
+        // 부모로 올림
+        this.props.onReciveData({
+          name: 'birthY',
+          value: this.state.birthY,
+        })
+        this.props.onReciveData({
+          name: 'birthM',
+          value: this.state.birthM,
+        })
+        this.props.onReciveData({
+          name: 'birthD',
+          value: this.state.birthD,
+        })
+      });
+    }
   }
   render() {
     return (

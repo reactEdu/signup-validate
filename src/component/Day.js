@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
 class Day extends Component {
-  componentDidMount() {
-
+  handleChange = (e) => {
+		this.props.onReciveData({
+			name: e.target.name,
+			value: e.target.value,
+		})
   }
   render() {
     let birthM = this.props.dateInfo.birthM
@@ -20,13 +23,14 @@ class Day extends Component {
       else tillDay = 28;
     }
     let key=1;
+    day.push(<option key={0} value="">선택</option>)
     for (let i = 1; i <= tillDay; i++) {
       key++;
       day.push(<option key={key} value={i}>{i}</option>)
     }
     return (
       <>
-      <select name="">
+      <select name="birthD" onChange={this.handleChange}>
         {this.props.selectedM ? day : ''}
       </select>
       일

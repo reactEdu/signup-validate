@@ -5,16 +5,23 @@ class Hobby extends Component {
     hobby: [],
   }
   handleChecked = (e) => {
+    // console.log(e.target.checked)
+    let result = {};
     if(e.target.checked) {
-      this.setState({ hobby: this.state.hobby.concat(e.target.value) })
+      result = { hobby: this.state.hobby.concat(e.target.value) };
+      // this.setState({ hobby: this.state.hobby.concat(e.target.value) })
     } else {
-      this.setState({ hobby:this.state.hobby.filter(v => v !== e.target.value) })
+      result = { hobby:this.state.hobby.filter(v => v !== e.target.value) };
+      // this.setState({ hobby:this.state.hobby.filter(v => v !== e.target.value) })
     }
-
-    this.props.onReciveData({
-      name: 'hobby',
-      value: this.state.hobby
-    });
+    this.setState(() => {
+      return result
+    }, () => {
+      this.props.onReciveData({
+        name: 'hobby',
+        value: this.state.hobby
+      });
+    })
   }
   render() {
     return (
