@@ -12,8 +12,8 @@ ex : 4월 선택시 30일까지. 5월선택시 31일까지.
 단, 2월은 윤년을 고려하여 28일 또는 29일로 나타나게 한다.
 */
 class Date extends Component {
-  selectedY = false;
-  selectedM = false;
+  selectedY = false; // 연 선택여부
+  selectedM = false; // 월 선택여부
   state = {
     isLeap: false, // 윤년 여부
     birthY: '',
@@ -24,12 +24,14 @@ class Date extends Component {
   handleReciveData = (data) => {
     console.log("data", data);
     if(data.name ===  "birthY") {
+      // console.log("y", this.state);
       this.selectedY = true;
-      this.setState((prevState) => {
-        return {
-          isLeap: data.isLeap,
-          birthY: data.value,
-        }; 
+      this.selectedM = false;
+      this.setState({
+        isLeap: data.isLeap,
+        birthY: data.value,
+        birthM: '',
+        birthD: '',
       });
       // console.log("outer", this.state);
     } else if(data.name ===  "birthM") {
@@ -40,6 +42,7 @@ class Date extends Component {
       this.selectedM = true;
       this.setState({
         birthM: data.value,
+        birthD: '',
       });
     } else if(data.name ===  "birthD"){
       if(this.state.birthM === "") {

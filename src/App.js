@@ -51,7 +51,7 @@ class App extends Component {
       return;
     }
     // 생년월일 입력확인
-    if(this.state.birthD === "") {
+    if(this.state.birthD === "" || this.state.birthM === "" || this.state.birthY === "") {
       alert("생년월일 선택해주세요.");
       return;
     }
