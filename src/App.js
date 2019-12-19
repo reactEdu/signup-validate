@@ -14,13 +14,12 @@ class App extends Component {
       id: '',
       pw: '',
       pwChk: '',
-      gender:'',
+      gender:'남',
       birthY: '',
       birthM: '',
       birthD: '',
       hobby: [],
       introduce: '',
-      introLength: 0
   };
   // 자식 컴포넌트의 유효성 체크를 통과했는지 확인
   checkResultValid = (data) => {
@@ -28,8 +27,15 @@ class App extends Component {
   }
   // 자식 컴포넌트로부터 받은 값 setState
   handleReciveData = (data) => {
-    // console.log(data);
-    this.setState({ [data.name]: data.value })
+    const type = data.constructor;
+
+    if(type === Object) {
+      this.setState({ [data.name]: data.value })
+    } else if(type === Array) {
+      data.forEach((v, i) => {
+        this.setState({ [v.name]: v.value })
+      })
+    }
   }
 
   handleSubmit = (e) => {
@@ -67,24 +73,17 @@ class App extends Component {
     }
     alert("회원가입이 완료되었습니다.");
   }
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
-    // Introduce 컴포넌트에서 알아서 함
-    // if(e.target.name === "introduce") {
-    //   this.setState({introLength : this.state.introduce.length})
-    // }
-  }
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <ul>
-          <Id onReciveData = {this.handleReciveData} onValidate = {this.checkResultValid} vaild = {this.isValidAll} />
-          <Pw onReciveData = {this.handleReciveData} keyName="pw" />
-          <Pw onReciveData = {this.handleReciveData} keyName="pwChk" />
-          <Gender onReciveData = {this.handleReciveData} />
+          <Id onReciveData = {this.handleReciveData} onValidate = {this.checkResultValid} idText={this.state.id} vaild = {this.isValidAll} />
+          <Pw onReciveData = {this.handleReciveData} label="비밀번호" keyName="pw" />
+          <Pw onReciveData = {this.handleReciveData} label="비밀번호 확인" keyName="pwChk" />
+          <Gender onReciveData = {this.handleReciveData} gender={this.state.gender} />
           <Date onReciveData = {this.handleReciveData} />
           <Hobby onReciveData = {this.handleReciveData}/>
-          <Introduce onReciveData = {this.handleReciveData}/>
+          <Introduce onReciveData = {this.handleReciveData} introLen = {this.introLen}/>
           <li>
             <button>취소</button>
             <button type="submit">가입완료</button>

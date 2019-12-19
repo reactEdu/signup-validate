@@ -1,38 +1,29 @@
-import React, { Component } from 'react';
+import React, { useRef } from 'react';
 
-class Hobby extends Component {
-  state = {
-    hobby: [],
-  }
-  handleChecked = (e) => {
-    // console.log(e.target.checked)
-    let result = {};
+const Hobby = (props) => {
+  let result = useRef([]);
+  const handleChecked = (e) => {
     if(e.target.checked) {
-      result = { hobby: this.state.hobby.concat(e.target.value) };
-      // this.setState({ hobby: this.state.hobby.concat(e.target.value) })
+      // 아래랑 같은 로직 : result.current = [...result.current, e.target.value]
+      result.current = [...result.current].concat(e.target.value);
+      // console.log("if", result.current)
     } else {
-      result = { hobby:this.state.hobby.filter(v => v !== e.target.value) };
-      // this.setState({ hobby:this.state.hobby.filter(v => v !== e.target.value) })
+      result.current = [...result.current, e.target.value].filter(v => v !== e.target.value);
+      // console.log("else", result.current)
     }
-    this.setState(() => {
-      return result
-    }, () => {
-      this.props.onReciveData({
-        name: 'hobby',
-        value: this.state.hobby
-      });
-    })
+    props.onReciveData({
+      name: 'hobby',
+      value: result.current
+    });
   }
-  render() {
-    return (
-      <li>
-        <label htmlFor="">취미</label>
-        <input type="checkbox" name="" onChange={this.handleChecked} value="연애"/> 연애
-        <input type="checkbox" name="" onChange={this.handleChecked} value="게임"/> 게임
-        <input type="checkbox" name="" onChange={this.handleChecked} value="영화보기"/> 영화보기
-      </li>
-    );
-  }
-}
+  return (
+  <li>
+    <label htmlFor="">취미</label>
+    <input type="checkbox" name="" onChange={handleChecked} value="연애"/> 연애
+    <input type="checkbox" name="" onChange={handleChecked} value="게임"/> 게임
+    <input type="checkbox" name="" onChange={handleChecked} value="영화보기"/> 영화보기
+  </li>
+  );
+};
 
 export default Hobby;
